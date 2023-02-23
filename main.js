@@ -1,4 +1,63 @@
-const {BrowserWindow, app} = require("electron")
+const {BrowserWindow, Menu, app} = require("electron")
+
+const macOS = (process.platform === "darwin")
+
+const role = (name) => ({role: name})
+const separator = {type: "separator"}
+
+const appSubmenu = {
+    label: app.name,
+    submenu: [
+        role("about"),
+        separator,
+        role("services"),
+        separator,
+        role("hide"),
+        role("hideOthers"),
+        role("unhide"),
+        separator,
+        role("quit"),
+    ],
+}
+
+const fileSubmenu = {
+    label: "File",
+    submenu: [
+        role(macOS ? "close" : "quit"),
+    ],
+}
+
+const viewSubmenu = {
+    label: "View",
+    submenu: [
+        role("reload"),
+        role("forceReload"),
+        role("toggleDevTools"),
+        separator,
+        role("togglefullscreen"),
+    ],
+}
+
+const windowSubmenu = {
+    label: "Window",
+    submenu: [
+        role("minimize"),
+        role("zoom"),
+        role(macOS ? "front" : "close"),
+    ],
+}
+
+const createMenu = () => {
+    const template = [
+        ...(macOS ? [appSubmenu] : []),
+        fileSubmenu,
+        viewSubmenu,
+        windowSubmenu,
+    ]
+
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
+}
 
 const createWindow = () => {
     const window = new BrowserWindow({
@@ -14,6 +73,7 @@ const createWindow = () => {
 app.whenReady()
     .then(
         () => {
+            createMenu()
             createWindow()
 
             app.on(
