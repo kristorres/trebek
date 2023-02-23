@@ -1,7 +1,7 @@
 <script>
     import {AppStyle, Baseline as baseline} from "svelte-doric"
 
-    import LightTheme from "./theme/light.svelte"
+    import Theme from "./theme.svelte"
 </script>
 
-<AppStyle {baseline} theme={LightTheme} />
+<AppStyle {baseline} theme={Theme} />
