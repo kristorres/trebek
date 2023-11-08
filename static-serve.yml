@@ -1,0 +1,3 @@
+port: 1984
+sources:
+  - dir: build
