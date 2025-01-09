@@ -15,5 +15,6 @@ Building and Running Locally
 git clone https://github.com/kristorres/trebek
 cd trebek
 pnpm install
-pnpm build/dev
+pnpm build
+pnpm preview
 ```

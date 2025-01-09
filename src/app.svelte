@@ -3,13 +3,13 @@
 </script>
 
 <style>
-    :global([ws-x~="theme[dark]"]) {
+    :global([ws-x~="@@theme:dark"]) {
         --trebek-blue: #081476;
         --trebek-gold: #fba61c;
 
         --primary: #4955d8;
         --primary-ripple: #4955d860;
-        --secondary: var(--torres-gold);
+        --secondary: var(--trebek-gold);
         --secondary-ripple: #fba61c60;
         --background: #121319;
         --background-layer: #323339;
@@ -19,4 +19,4 @@
     }
 </style>
 
-<svelte:body use:wsx={{theme: "dark", "@app": true}} />
+<svelte:body use:wsx={{"@@theme": "dark", "@@app": true}} />
